@@ -1,0 +1,78 @@
+@use "utilities/colors" as *;
+
+.nav {
+  position: sticky;
+  top: 0;
+  background-color: $white;
+  z-index: 10;
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    .nav__items {
+      display: none;
+      .nav__link {
+        text-decoration: none;
+        padding: 2rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #000;
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+        transition: background-color 0.3s, color 0.3s;
+
+        &:hover {
+          color: $white;
+          background-color: $charcoal;
+        }
+
+        &:focus {
+          outline: none;
+          color: $white;
+          background-color: black;
+        }
+
+        &--active {
+          color: $white;
+          background-color: black;
+        }
+      }
+    }
+  }
+}
+
+.nav-mobile {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: $white;
+  transition: 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+
+  &--active {
+    transform: translateY(0);
+  }
+  &__items {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 2rem;
+    .nav-mobile__link {
+      position: relative;
+      padding: 2rem;
+      text-decoration: none;
+      color: #000;
+      transition: opacity 0.3s;
+      font-weight: 500;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}

@@ -1,0 +1,776 @@
+@use "utilities/animations";
+@use "utilities/nav";
+@use "utilities/colors" as *;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Raleway", sans-serif;
+}
+
+.wrapper-wider {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.wrapper-thinner {
+  width: 70%;
+  min-width: 300px;
+  margin: 0 auto;
+}
+
+.logo {
+  position: relative;
+  padding: 1.5rem 0;
+  font-size: 2rem;
+  font-weight: 500;
+
+  .logo__text {
+    position: relative;
+    top: 0.2rem;
+    left: 2.5rem;
+  }
+  .logo__tree {
+    position: absolute;
+    left: -2px;
+    height: 24px;
+    opacity: 0.8;
+  }
+
+  &--footer {
+    left: -1.5rem;
+
+    .logo__tree--footer {
+      height: 32px;
+      left: -5px;
+    }
+    .logo__text--footer {
+      position: relative;
+      top: 0.2rem;
+      left: 3rem;
+    }
+  }
+}
+
+.page-heading {
+  position: relative;
+  padding: 1rem 0 0.5rem;
+  font-weight: 500;
+  &:after {
+    content: "";
+    position: absolute;
+    left: 55px;
+    bottom: 0px;
+    width: 100px;
+    height: 7px;
+    transform: skew(322deg) translateX(-50%);
+    background: rgb(38 36 36 / 50%);
+    z-index: -1;
+  }
+}
+
+.section-heading {
+  text-transform: uppercase;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+
+.hamburger {
+  position: fixed;
+  right: 4rem;
+  padding: 1rem;
+  background: none;
+  border: 1px solid transparent;
+  font-size: 3rem;
+  cursor: pointer;
+  z-index: 101;
+
+  .close-icon {
+    display: none;
+  }
+
+  .bar-icon {
+    display: none;
+  }
+
+  .hamburger-icon-active {
+    display: block;
+  }
+}
+
+.ico-font {
+  font-family: "Icofont", "Raleway", sans-serif;
+}
+
+.header {
+  &__hero-img {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../../dist/img/jungle-mini.jpg);
+    background-position: 50% 72%;
+    background-size: cover;
+    height: 32rem;
+    z-index: 0;
+
+    .header__hero-shadow {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgb(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+    .header__content {
+      color: $white;
+      z-index: 1;
+      font-size: 1.4rem;
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+.about-us {
+  padding: 5rem 0;
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    .about-us__img {
+      width: 100%;
+    }
+
+    .about-us__text {
+      margin-top: 2rem;
+      .about-us__title {
+        margin-bottom: 1.5rem;
+      }
+
+      .about-us__content {
+        font-size: 1.2rem;
+        line-height: 2;
+        .about-us__link {
+          text-decoration: none;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.adventure {
+  &__hero-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: url(../../dist/img/girl-mini.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 20rem;
+    z-index: 0;
+
+    .adventure__hero-shadow {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgb(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    .adventure__frame {
+      padding: 1.5rem;
+      z-index: 1;
+      border: 1px solid #fff;
+      color: $white;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+  }
+}
+
+.offer {
+  padding: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__choose {
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+    .offer__card {
+      margin: 1rem;
+      padding: 2rem 4rem;
+      border-radius: 0.5rem;
+      box-shadow: 0px 1px 5px gray;
+      transition: scale 0.2s;
+      &:hover {
+        scale: 1.05;
+      }
+      .offer__card-heading {
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .offer__price {
+        margin-top: 0.5rem;
+        text-align: center;
+        font-weight: bold;
+        font-size: 3.2rem;
+      }
+
+      .offer__card-ul {
+        margin-top: 1.5rem;
+        list-style: none;
+        font-size: 1rem;
+        line-height: 2;
+
+        .offer__card-option {
+          font-weight: 500;
+          font-size: 1.1rem;
+        }
+
+        .offer__card-option--gray {
+          color: gray;
+        }
+
+        .offer__card-checkmark {
+          color: $green-primary;
+        }
+      }
+
+      .offer__card-ul--right {
+        text-align: center;
+      }
+
+      .offer__choose-btn {
+        padding: 0.5rem 3.6rem;
+        margin-top: 2rem;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: $white;
+        color: #333;
+        box-shadow: 0px 2px 5px gray;
+        margin-bottom: 1rem;
+        cursor: pointer;
+
+        &:hover {
+          scale: 1.05;
+        }
+
+        &:focus {
+          outline: none;
+          background-color: $charcoal;
+          color: $white;
+        }
+      }
+
+      .offer__choose-btn--middle {
+        background-color: $green-primary;
+        box-shadow: 0px 2px 5px $green-primary;
+        &:focus {
+          background-color: $green-secondary;
+          color: black;
+        }
+      }
+
+      &--other {
+        background-color: aliceblue;
+      }
+    }
+  }
+
+  &__more {
+    margin-top: 2rem;
+    text-align: center;
+    &-link {
+      padding: 1rem 0;
+      position: relative;
+      font-size: 1.8rem;
+      color: #000;
+      font-weight: 500;
+      text-align: center;
+      text-decoration: none;
+      &:focus {
+        outline: none;
+        &::after {
+          transform: scaleX(1);
+          transform-origin: right;
+        }
+      }
+
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: "";
+        height: 3px;
+        width: 100%;
+        background-color: #000;
+        transform: scaleX(0);
+        transition: transform 0.3s;
+        transform-origin: right;
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+}
+
+.offer-other {
+  margin: 3rem 0;
+}
+
+.google-map {
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 3rem;
+    iframe {
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+    }
+  }
+}
+
+.contact {
+  margin: 3rem 0;
+  background-color: $main-gray;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+
+    &-box {
+      display: flex;
+      flex-direction: column;
+      label {
+        margin: 1rem 0;
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        i {
+          font-size: 20px;
+          margin-right: 0.5rem;
+        }
+      }
+
+      input {
+        padding: 1rem;
+        border: 2px solid transparent;
+        border-radius: 0.5rem;
+        font-size: 1.4rem;
+      }
+
+      textarea {
+        padding: 1rem;
+        min-width: 100%;
+        max-width: 100%;
+        border: none;
+        border-radius: 0.5rem;
+        border: 2px solid transparent;
+      }
+
+      .contact__error-text {
+        color: $red;
+        font-size: 1.2rem;
+        margin: 0.5rem 0 0 1rem;
+        visibility: hidden;
+      }
+    }
+
+    &-box.error {
+      input,
+      textarea {
+        border: 2px solid $red;
+      }
+      .contact__error-text {
+        visibility: visible;
+      }
+    }
+    .contact__form-btn {
+      padding: 1rem;
+      width: 25%;
+      min-width: 100px;
+      max-width: 200px;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #ccc;
+      cursor: pointer;
+      transition: color 0.3s, background-color 0.3s;
+      &:hover {
+        background-color: #333;
+        color: $white;
+      }
+    }
+
+    &-btns {
+      display: flex;
+      justify-content: flex-end;
+
+      .contact__form-btn--send {
+        margin: 2rem 1rem;
+      }
+      .contact__form-btn--clear {
+        margin: 2rem 0;
+      }
+    }
+    .contact__form-popup {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: absolute;
+      top: -300px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80vw;
+      max-width: 600px;
+      height: 200px;
+      background-color: #fff;
+      border-radius: 8px;
+      border: 2px solid black;
+      transition: top 0.3s;
+      &-info {
+        text-align: center;
+      }
+      .contact__form-btn--popup-close {
+        margin-top: 1rem;
+        padding: 1rem;
+      }
+      &.show-popup {
+        top: 300px;
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: $main-gray;
+  &__upper {
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    .logo--footer {
+      font-size: 2.6rem;
+    }
+
+    .footer__content {
+      margin-top: 1rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      .footer__block {
+        margin-top: 2rem;
+        width: 30%;
+        .footer__heading {
+          font-size: 1.6rem;
+        }
+        .footer__list {
+          margin-top: 1rem;
+          list-style: none;
+          .footer__list-item a {
+            text-decoration: none;
+            color: #000;
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+  &__bottom {
+    padding: 2rem 0;
+
+    &-text {
+      color: #333;
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .section-heading {
+    font-size: 2.2rem;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .logo--footer {
+    left: 0;
+  }
+
+  .nav {
+    .navbar {
+      .nav__items {
+        display: block;
+      }
+    }
+  }
+
+  .nav-mobile {
+    display: none;
+  }
+
+  .adventure {
+    &__hero-img {
+      .adventure__frame {
+        padding: 2rem;
+        font-size: 2.2rem;
+      }
+    }
+  }
+
+  .header {
+    &__hero-img {
+      .header__content {
+        h1 {
+          font-size: 2.2rem;
+        }
+      }
+    }
+  }
+
+  .offer {
+    &__choose {
+      font-size: 1.4rem;
+    }
+
+    &__cards {
+      justify-content: space-around;
+    }
+  }
+
+  .footer {
+    &__upper {
+      .logo--footer {
+        margin-right: auto;
+      }
+
+      .footer__content {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+
+        .footer__block {
+          margin-top: 0;
+
+          .footer__heading {
+            font-size: 1.4rem;
+          }
+
+          .footer__list {
+            &-item a {
+              font-size: 1rem;
+            }
+          }
+          &--middle {
+            margin-right: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .wrapper-wider {
+    width: 75%;
+    min-width: 650px;
+  }
+
+  .wrapper-thinner {
+    width: 60%;
+    min-width: 550px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .section-heading {
+    font-size: 2.6rem;
+  }
+
+  .logo--footer .logo__tree--footer {
+    height: 32px;
+    left: -5px;
+    top: 18px;
+  }
+
+  .header {
+    &__hero-img {
+      background: url(../../dist/img/jungle-big.jpg);
+      background-position: 50% 72%;
+      background-size: cover;
+      .header__content {
+        font-size: 1.6rem;
+        h1 {
+          font-size: 2.6rem;
+        }
+      }
+    }
+  }
+
+  .about-us {
+    &__bottom {
+      width: auto;
+      flex-direction: row;
+      align-items: flex-start;
+
+      .about-us__img {
+        width: 50%;
+        padding-right: 3.5rem;
+      }
+
+      .about-us__text {
+        margin-top: 0;
+        .about-us__title {
+          margin-bottom: 1.5rem;
+        }
+        .about-us__content {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .adventure {
+    &__hero-img {
+      background: url(../../dist/img/girl-big.jpg);
+      background-size: cover;
+      background-position: 50%;
+      .adventure__frame {
+        padding: 2rem;
+        font-size: 2.6rem;
+      }
+    }
+  }
+
+  .offer {
+    &__cards {
+      justify-content: space-around;
+    }
+
+    &__more {
+      margin-top: 4rem;
+    }
+  }
+
+  .footer {
+    &__upper {
+      padding: 3rem 0;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      .logo--footer {
+        width: 50%;
+        font-size: 3.2rem;
+      }
+
+      .footer__content {
+        margin-top: 0;
+        width: 50%;
+        display: flex;
+        justify-content: space-between;
+        .footer__block {
+          width: 30%;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .wrapper-wider {
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrapper-wider {
+    max-width: 1000px;
+  }
+
+  .about-us {
+    &__bottom {
+      .about-us__text {
+        .about-us__content {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .offer {
+    &__cards {
+      justify-content: space-between;
+      .offer__card {
+        margin: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .nav {
+    .navbar {
+      .nav__items {
+        .nav__link {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+
+  .about-us {
+    &__bottom {
+      .about-us__text {
+        .about-us__content {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}

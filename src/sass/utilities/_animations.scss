@@ -1,0 +1,45 @@
+@keyframes navItemsAnimation {
+  from {
+    transform: translateY(-1000%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes iconOffAnimation {
+  from {
+    transform: rotate(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes iconOnAnimation {
+  from {
+    transform: rotate(1);
+    opacity: 0;
+  }
+
+  to {
+    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.nav-items-animation {
+  animation: navItemsAnimation 0.5s both;
+}
+
+.icon-off-animation {
+  animation: iconOffAnimation 0.3s;
+}
+
+.icon-on-animation {
+  animation: iconOnAnimation 0.3s;
+}
